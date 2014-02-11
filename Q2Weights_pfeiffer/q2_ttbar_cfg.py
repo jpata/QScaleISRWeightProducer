@@ -11,12 +11,12 @@ process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
 process.source = cms.Source("PoolSource",
     # replace 'myfile.root' with the source file you want to use
     fileNames = cms.untracked.vstring(
-        '/store/mc/Summer12_DR53X/W2JetsToLNu_TuneZ2Star_8TeV-madgraph/AODSIM/PU_S10_START53_V7A-v1/0000/A002DE4D-EE04-E211-A826-003048C68A9E.root'
+        '/store/mc/Summer12_DR53X/TTJets_FullLeptMGDecays_8TeV-madgraph-tauola/AODSIM/PU_S10_START53_V7C-v2/10000/000560C1-FD97-E211-9F33-00304867924E.root'
     ),
      skipEvents = cms.untracked.uint32(0)
 )
 
-process.q2weights = cms.EDProducer('Q2WeightsWjets'
+process.q2weights = cms.EDProducer('Q2WeightsTTbar'
 )
 
 #process.TFileService = cms.Service("TFileService",
