@@ -67,7 +67,7 @@ class Q2WeightsTTbar : public edm::EDProducer{
 //
 // constructors and destructor
 //
-Q2WeightsTTbar::Q2Weights(const edm::ParameterSet& iConfig)
+Q2WeightsTTbar::Q2WeightsTTbar(const edm::ParameterSet& iConfig)
 {
   LHAPDF::initPDFSet("cteq6ll.LHpdf");
   LHAPDF::usePDFMember(1,0);
@@ -76,7 +76,7 @@ Q2WeightsTTbar::Q2Weights(const edm::ParameterSet& iConfig)
 }
 
 
-Q2WeightsTTbar::~Q2Weights()
+Q2WeightsTTbar::~Q2WeightsTTbar()
 {
  
  
