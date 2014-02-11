@@ -17,6 +17,7 @@
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticleFwd.h"
+#include "FWCore/ParameterSet/interface/FileInPath.h"
 
 #include "DataFormats/JetReco/interface/GenJet.h"
 #include "DataFormats/Candidate/interface/Candidate.h"
@@ -85,12 +86,15 @@ Q2WeightsWjets::Q2WeightsWjets(const edm::ParameterSet& iConfig)
   LHAPDF::initPDFSet("cteq6ll.LHpdf");
   LHAPDF::usePDFMember(1,0);
 
-  TFile *file_weights = new TFile("Wjets_Q2_weights_Jet1_Qscale_pdf.root");
+  //TFile *file_weights = new TFile("Wjets_Q2_weights_Jet1_Qscale_pdf.root");
+  TFile *file_weights = new TFile(iConfig.getParameter<edm::FileInPath>("fileWeights").fullPath().c_str());
   hweight_up = (TH1F*)file_weights->Get("hweight_up");
   hweight_down = (TH1F*)file_weights->Get("hweight_down"); 
 
-  TFile *file_weight_up = new TFile("simuUp_8var_pdf.root");
-  TFile *file_weight_down = new TFile("simuDown_8var_pdf.root");
+  TFile *file_weight_up = new TFile(iConfig.getParameter<edm::FileInPath>("fileWeightUp").fullPath().c_str());
+  TFile *file_weight_down = new TFile(iConfig.getParameter<edm::FileInPath>("fileWeightDown").fullPath().c_str());
+  //TFile *file_weight_up = new TFile("simuUp_8var_pdf.root");
+  //TFile *file_weight_down = new TFile("simuDown_8var_pdf.root");
   
   NN_w_up = (TH1F*)file_weight_up->Get("bgh");
   NN_w_down = (TH1F*)file_weight_down->Get("bgh");

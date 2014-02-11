@@ -16,7 +16,10 @@ process.source = cms.Source("PoolSource",
      skipEvents = cms.untracked.uint32(0)
 )
 
-process.q2weights = cms.EDProducer('Q2WeightsWjets'
+process.q2weights = cms.EDProducer('Q2WeightsWjets',
+    fileWeights=cms.FileInPath("QScaleISRWeightProducer/Q2Weights_pfeiffer/Wjets_Q2_weights_Jet1_Qscale_pdf.root"),
+    fileWeightUp=cms.FileInPath("QScaleISRWeightProducer/Q2Weights_pfeiffer/simuUp_8var_pdf.root"),
+    fileWeightDown=cms.FileInPath("QScaleISRWeightProducer/Q2Weights_pfeiffer/simuDown_8var_pdf.root"),
 )
 
 #process.TFileService = cms.Service("TFileService",
