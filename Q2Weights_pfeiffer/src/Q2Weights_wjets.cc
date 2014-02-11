@@ -70,8 +70,8 @@ class Q2WeightsWjets : public edm::EDProducer{
   TH1F* NN_w_up;
   TH1F* NN_w_down;
 
-  testUp_8var::testUp_8var tU;
-  testDown_8var::testDown_8var tD;
+  testUp_8var tU;
+  testDown_8var tD;
 
 
 
@@ -108,7 +108,7 @@ Q2WeightsWjets::~Q2WeightsWjets()
 //
 // member functions
 //
- double deltaR(math::XYZTLorentzVector v1,  math::XYZTLorentzVector v2) {
+ double _deltaR(math::XYZTLorentzVector v1,  math::XYZTLorentzVector v2) {
    Double_t DeltaR = 0.0;
    Double_t DeltaPhi = TMath::Abs(v1.Phi()-v2.Phi());
    if (DeltaPhi>TMath::Pi())
@@ -206,7 +206,7 @@ Q2WeightsWjets::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     bool remove = false;
     //do not use jets matched to leptons
     for(size_t j=0; j<genLepton->size();++j){
-      if(deltaR(genLepton->at(j),sortedGenJets_kt4.at(i).p4())<0.1 ) {
+      if(_deltaR(genLepton->at(j),sortedGenJets_kt4.at(i).p4())<0.1 ) {
 	remove = true;
       }
     }
@@ -228,7 +228,7 @@ Q2WeightsWjets::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   }
   for(size_t i=0; i<4 && i<sortedGenJets_kt4.size(); ++i){
     for(size_t j=i+1; j<4 && j<sortedGenJets_kt4.size(); ++j){
-      dR_jj[i][j] = deltaR(sortedGenJets_kt4.at(i).p4(),sortedGenJets_kt4.at(j).p4());
+      dR_jj[i][j] = _deltaR(sortedGenJets_kt4.at(i).p4(),sortedGenJets_kt4.at(j).p4());
       m_jj[i][j] =(sortedGenJets_kt4.at(i).p4()+sortedGenJets_kt4.at(j).p4()).M();
     }
   }
